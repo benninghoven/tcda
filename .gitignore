@@ -1,0 +1,8 @@
+*
+!.gitignore
+!README.md
+!requirements.txt
+!setup.py
+!docs/
+!src/
+!tests/
