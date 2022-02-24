@@ -1,18 +1,12 @@
-from src.gen import *
-
-from src.classes.student import Student
-from src.classes.visit import Visit
-from src.sauce import Sauce
+from sauce import Sauce 
+from gen import GenJSON
 
 def Main():
-    db = []
-    with open ("2-days.html", 'r') as f:
-        db = GenDB(f)
-
-    sauce = Sauce()
-    sauce.Gen("bobby")
-
-
+    db = Sauce()
+    with open("2-days.html", 'r') as f:
+        dog = GenJSON(f)
+    db.Gen(dog)
+    db.Print()
 
 
 if __name__ == "__main__":
