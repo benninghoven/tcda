@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from checkdate import CheckDate
 import json
 import shlex
+import time
 
 from student import Student
 from visit import Visit
@@ -14,6 +15,10 @@ def Err(errMsg):
 
 # FIXMEL generate the json in both WINDOWS and MAC
 def GenJSON(file): # given an HTML file
+    print("generating started")
+    starttime = time.time()
+    lasttime = starttime
+
     parser = "lxml"
     soup = BeautifulSoup(file, parser)
     try:
@@ -67,7 +72,8 @@ def GenJSON(file): # given an HTML file
                 continue
             temp = Visit()
             temp.date = row[0]
-            #temp.day =  WhatDay(temp.date)
+            temp.day =  WhatDay(temp.date)
+            temp.ownerID = stuDB[inx].ID
             temp.timeIn = row[1]
             temp.SetMilTime(temp.timeIn,'i')
             temp.timeOut = row[2]
@@ -81,6 +87,8 @@ def GenJSON(file): # given an HTML file
                 temp.AddClassNumber(secTermNo[1])
 
             stuDB[inx].AddVisit(temp)
+    sec = round((time.time() - lasttime), 2)
+    print(f"generated in {sec} seconds")
     return stuDB
 """
     with open(newFilePath, 'w') as newFile: # generate new json file

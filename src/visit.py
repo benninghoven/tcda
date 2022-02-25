@@ -2,6 +2,7 @@ class Visit:
     def __init__(self):
         self.date = "date"
         self.day = "monday"
+        self.ownerID = 1231231
         self.timeIn = "timeIn"
         self.milTimeIn = 1400
         self.timeOut = "timeOut"
@@ -12,7 +13,7 @@ class Visit:
         self.classNumber = 12345
 
     def __str__(self):
-        return f"{self.date} {self.day} {self.timeIn} {self.milTimeIn} {self.timeOut} {self.milTimeOut} {self.hoursVisited} {self.reason} {self.subject} {self.classNumber}"
+        return f"\t{self.date} {self.day} {self.ownerID} {self.timeIn} {self.milTimeIn} {self.timeOut} {self.milTimeOut} {self.hoursVisited} {self.reason} {self.subject} {self.classNumber}"
 
     def AddClassNumber(self, no):
         self.classNumber = int(no)

@@ -24,7 +24,7 @@ class Student:
 
 
     def __str__(self): # printing student
-        return f"{self.name} {self.ID}"
+        return f"[{self.ID}] [{self.name}]"
 
     def AddVisit(self, visit): #FIXME add a better type checking # duck type checking
         self.visits.append(visit)
