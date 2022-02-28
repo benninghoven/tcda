@@ -11,9 +11,18 @@ class Visit:
         self.reason = "reason"
         self.subject = "subject"
         self.classNumber = 12345
+        self.isEmbed = False
+
+
+    def GetList(self):
+        lst = [self.date, self.day, self.ownerID, self.timeIn, 
+                    self.milTimeIn, self.timeOut, self.milTimeOut, 
+                    self.hoursVisited,self.reason,self.subject, 
+                    self.classNumber, self.isEmbed]
+        return lst
 
     def __str__(self):
-        return f"\t{self.date} {self.day} {self.ownerID} {self.timeIn} {self.milTimeIn} {self.timeOut} {self.milTimeOut} {self.hoursVisited} {self.reason} {self.subject} {self.classNumber}"
+        return f"{self.date} {self.day} {self.ownerID} {self.timeIn} {self.milTimeIn} {self.timeOut} {self.milTimeOut} {self.hoursVisited} {self.reason} {self.subject} {self.classNumber} {self.isEmbed}"
 
     def AddClassNumber(self, no):
         self.classNumber = int(no)

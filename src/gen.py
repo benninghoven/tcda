@@ -55,6 +55,36 @@ def GenJSON(file): # given an HTML file
     
     stuDB = [] # all student objects stored here
     inx = -1
+    # FIXME Add read from file
+    embedded  = [
+        80021,
+        80022,
+        80024,
+        80025,
+        80005,
+        80006,
+        80056,
+        80054,
+        80055,
+        80886,
+        80887,
+        80147,
+        80161,
+        80162,
+        80173,
+        80174,
+        80505,
+        80506,
+        80507,
+        80960,
+        80250,
+        80251,
+        80263,
+        80264,
+        80238,
+        80289,
+        80287,
+        80288 ]
     for row in lst:
         if not CheckDate(row[0]): # create student if 0th element is not a date
             if len(row) < 4:
@@ -85,7 +115,9 @@ def GenJSON(file): # given an HTML file
             if len(secTermNo) > 1:
                 temp.subject = secTermNo[0]
                 temp.AddClassNumber(secTermNo[1])
-
+                if temp.classNumber in embedded:
+                    temp.isEmbed = True
+                    stuDB[inx].hasEmbed = True
             stuDB[inx].AddVisit(temp)
     sec = round((time.time() - lasttime), 2)
     print(f"generated in {sec} seconds")

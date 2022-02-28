@@ -4,14 +4,19 @@ from gen import GenJSON
 def Main():
 
     db = Sauce() 
-    with open("fatboy.html", 'r') as f:
+    file = "goodreport.html"
+    with open(file, 'r') as f:
         dog = GenJSON(f)
+
     db.Gen(dog)
 
     # DONE
     #db.PrintAll()
+    db.GenCSV()
+    #db.PrintStudents()
+    #db.PrintEmbedStudents()
     #db.PrintVisits()
-    db.PrintStudents()
+    #db.PRE()
 
     # FIXME
     #db.PopTimes("monday")

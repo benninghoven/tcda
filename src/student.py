@@ -21,10 +21,11 @@ class Student:
         self.totalVisits = 0    # total number of visits, basically len(visits)
         self.hours = 1.0        # total hours spent at the TC
         self.visits = []        # holds our visit objects
+        self.hasEmbed = False
 
 
     def __str__(self): # printing student
-        return f"[{self.ID}] [{self.name}]"
+        return f"[{self.ID}] [{self.name}] [{self.hasEmbed}]"
 
     def AddVisit(self, visit): #FIXME add a better type checking # duck type checking
         self.visits.append(visit)
