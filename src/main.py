@@ -6,17 +6,18 @@ def Main():
     db = Sauce() 
     file = "goodreport.html"
     with open(file, 'r') as f:
-        dog = GenJSON(f)
+        temp = GenJSON(f)
 
-    db.Gen(dog)
+    db.Gen(temp)
 
     # DONE
     #db.PrintAll()
-    db.GenCSV()
+    #db.GenCSV()
     #db.PrintStudents()
     #db.PrintEmbedStudents()
     #db.PrintVisits()
     #db.PRE()
+    db.PrintClasses()
 
     # FIXME
     #db.PopTimes("monday")

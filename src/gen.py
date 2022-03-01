@@ -84,7 +84,8 @@ def GenJSON(file): # given an HTML file
         80238,
         80289,
         80287,
-        80288 ]
+        80288
+        ]
     for row in lst:
         if not CheckDate(row[0]): # create student if 0th element is not a date
             if len(row) < 4:

@@ -2,6 +2,7 @@ from visit import Visit
 from student import Student
 from datetime import datetime
 from popday import Day
+import sys
 import csv
 
 class Sauce:
@@ -62,7 +63,6 @@ class Sauce:
         for x in self.visits:
             if x.day == day:
                 d.AddVisit(x)
-
             d.Print()
 
     def PRE(self):  # print ratio embedded
@@ -74,6 +74,32 @@ class Sauce:
         percentEmb = (embedded/huge) * 100
         percentEmb = round(percentEmb, 2)
         print(f"{int(embedded)} embedded students\n{huge} total students\n{percentEmb}% embedded")
+
+    def PrintClasses(self):
+        sett = set()
+        for v in self.visits:
+            sett.add(v.subject)
+
+        classes = {}
+        for s in sett:
+            res = s.partition("-")[0]
+            # Make our new pair in the dictionary if we don't exist
+            if classes.get(res) == None:
+                pair = {res : []}
+                classes.update(pair)
+
+            classes[res].append(s)
+
+        for v in classes.values():
+            v.sort()
+
+
+        for k,v in classes.items():
+            print(f"[{k}]")
+            for x in v:
+                sys.stdout.write(f"{x} ")
+            print()
+
 
 
 
