@@ -2,8 +2,8 @@ from visit import Visit
 from student import Student
 
 class Day:
-    def __init__(self,visit):
-        self.day = visit.day
+    def __init__(self,day,visits):
+        self.day = day
         self.normSlots = {
               "9:00 AM":  0,
               "10:00 AM": 0,
@@ -33,5 +33,4 @@ class Day:
               2000 : False
               }
 
-def Week():
-    pass
+

@@ -4,7 +4,7 @@ from gen import GenJSON
 def Main():
 
     db = Sauce() 
-    file = "goodreport.html"
+    file = "chungus.html"
     with open(file, 'r') as f:
         temp = GenJSON(f)
 
@@ -17,10 +17,12 @@ def Main():
     #db.PrintEmbedStudents()
     #db.PrintVisits()
     #db.PRE()
-    db.PrintClasses()
+    #db.PrintClasses()
 
     # FIXME
-    #db.PopTimes("monday")
+    dayNames= ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Sunday']
+    for day in dayNames:
+        db.PrintPopTimes(day)
 
 
 if __name__ == "__main__":

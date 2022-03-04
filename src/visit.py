@@ -34,7 +34,7 @@ class Visit:
             if c.isdigit():
                 newS += c
         digits = int(newS)
-        if end == "PM":
+        if end == "PM" and digits < 1200:
             digits += 1200
         return digits
 

@@ -5,6 +5,47 @@ from popday import Day
 import sys
 import csv
 
+class Day:
+    def __init__(self,visit):
+        self.normSlots = {
+                "9:00 AM":  0,
+                "10:00 AM": 0,
+                "11:00 AM": 0,
+                "12:00 PM": 0,
+                "1:00 PM":  0,
+                "2:00 PM":  0,
+                "3:00 PM":  0,
+                "4:00 PM":  0,
+                "5:00 PM":  0,
+                "6:00 PM":  0,
+                "7:00 PM":  0,
+                "8:00 PM":  0
+                }
+
+        self.milSlots = {
+                900  : False,
+                1000 : False,
+                1100 : False,
+                1200 : False,
+                1300 : False,
+                1400 : False,
+                1500 : False,
+                1600 : False,
+                1700 : False,
+                1800 : False,
+                1900 : False,
+                2000 : False
+                }
+        
+        for k,v in self.milSlots.items():
+            tin = int((visit.milTimeIn/100)%100)
+            tout = int((visit.milTimeOut/100)%100)
+            key = int((k/100)%100)
+
+            if key >= tin and key <= tout:
+                self.milSlots[k] = True
+
+
 class Sauce:
 
     def __init__(self):
@@ -52,7 +93,7 @@ class Sauce:
             for v in tmp:
                 filewriter.writerow(v.GetList())
 
-
+    #FIXME put this with the other func
     def PopTimes(self, day): # we care about UNIQUE heads, and what time they're there
         day = day[:1].upper() + day[1:].lower()
         dayNames= ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday']
@@ -99,16 +140,46 @@ class Sauce:
             for x in v:
                 sys.stdout.write(f"{x} ")
             print()
+        return
+
+    def PrintPopTimes(self, day):
+        timeSlots =[ 
+                {"9:00 AM":  0.0},
+                {"10:00 AM": 0.0},
+                {"11:00 AM": 0.0},
+                {"12:00 PM": 0.0},
+                {"1:00 PM":  0.0},
+                {"2:00 PM":  0.0},
+                {"3:00 PM":  0.0},
+                {"4:00 PM":  0.0},
+                {"5:00 PM":  0.0},
+                {"6:00 PM":  0.0},
+                {"7:00 PM":  0.0},
+                {"8:00 PM":  0.0}
+                ]
+
+        weeks = set()
+        for v in self.visits:
+            if v.day == day:
+                weeks.add(v.date)
+                temp = Day(v)
+                index = 0
+                for val in temp.milSlots.values():
+                    if val:
+                        keylst = list(timeSlots[index].keys())
+                        timeSlots[index][keylst[0]] += 1
+
+                    index += 1
+
+        index = 0
+
+        for slot in timeSlots:
+            keylst = list(slot.keys())
+            timeSlots[index][keylst[0]] /= len(weeks)
+            index += 1
 
 
-
-
-
-
-            
-        
-        
-
-
-
-
+        print(f"Popular Times for {day}")
+        for dic in timeSlots:
+            for x,y in dic.items():
+                print(f"{x} {int(round(y,0))} students")
